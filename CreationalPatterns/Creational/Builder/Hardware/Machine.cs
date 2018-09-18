@@ -9,6 +9,5 @@ namespace CreationalPatterns.Creational.Builder.Hardware
         HardwareComponents Components { get; set; }
         void Play();
         void DevelopCode();
-
     }
 }
