@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeGym.Migrations
 {
     [DbContext(typeof(CodeGymContext))]
-    [Migration("20180918111239_InitalSetup")]
-    partial class InitalSetup
+    [Migration("20180918115453_FirstEntities")]
+    partial class FirstEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,7 +41,7 @@ namespace CodeGym.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("CodeGym.Models.Core.CourseEdition", b =>
@@ -62,24 +62,24 @@ namespace CodeGym.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseEdition");
+                    b.ToTable("CourseEditions");
                 });
 
             modelBuilder.Entity("CodeGym.Models.Core.Enrollment", b =>
                 {
                     b.Property<long>("CourseEditionId");
 
-                    b.Property<long>("StudentID");
+                    b.Property<long>("StudentId");
 
                     b.Property<DateTime>("EnrollmentDate");
 
                     b.Property<int>("Score");
 
-                    b.HasKey("CourseEditionId", "StudentID");
+                    b.HasKey("CourseEditionId", "StudentId");
 
-                    b.HasIndex("StudentID");
+                    b.HasIndex("StudentId");
 
-                    b.ToTable("Enrollment");
+                    b.ToTable("Enrollments");
                 });
 
             modelBuilder.Entity("CodeGym.Models.Core.Student", b =>
@@ -102,7 +102,7 @@ namespace CodeGym.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Student");
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("CodeGym.Models.Core.CourseEdition", b =>
@@ -122,7 +122,7 @@ namespace CodeGym.Migrations
 
                     b.HasOne("CodeGym.Models.Core.Student", "Student")
                         .WithMany("Enrollments")
-                        .HasForeignKey("StudentID")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

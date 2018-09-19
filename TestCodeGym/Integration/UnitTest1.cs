@@ -3,7 +3,7 @@ using Xunit;
 
 namespace TestCodeGym
 {
-    public class UnitTest1
+    public class EFRepositoryTest
     {
         [Fact]
         public void Test1()

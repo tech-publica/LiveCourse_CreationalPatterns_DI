@@ -16,4 +16,8 @@
     <ProjectReference Include="..\CodeGym\CodeGym.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Unit\" />
+  </ItemGroup>
+
 </Project>
