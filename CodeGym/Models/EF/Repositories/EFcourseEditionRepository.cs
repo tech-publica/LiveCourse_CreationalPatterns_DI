@@ -14,10 +14,27 @@ namespace CodeGym.Models.EF.Repositories
         {
             this.ctx = ctx;
         }
+
         public void Add(CourseEdition edition)
         {
             ctx.CourseEditions.Add(edition);
         }
+
+        public CourseEdition FindById(long id)
+        {
+            return ctx.CourseEditions.Find(id);
+        }
+
+        public IEnumerable<CourseEdition> FindAll()
+        {
+            return ctx.CourseEditions.ToList();
+        }
+
+        public IEnumerable<CourseEdition> FindByCourseId(long id)
+        {
+            return ctx.CourseEditions.Where(ce => ce.CourseId == id).ToList();
+        }
+
         public void Remove(long editionId)
         {
             var toRemove = new CourseEdition { Id = editionId };

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CodeGym.Models.Core.Repositories;
+using CodeGym.Models.Core.UnitOfWorks;
 using CodeGym.Models.EF;
+using CodeGym.Models.EF.Repositories;
+using CodeGym.Models.EF.UnitOfWorks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +25,10 @@ namespace CodeGym
         {
             services.AddDbContext<CodeGymContext>(opts => opts.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<CourseRepository, EFCourseRepository>();
+            services.AddTransient<CourseEditionRepository, EFCourseEditionRepository>();
+            services.AddTransient<EnrollmentRepository, EFEnrollmentRepository>();
+            services.AddTransient<CourseEditionUnitOfWork, EFCourseEditionUnitOfWork>();
             services.AddMvc();
         }
 

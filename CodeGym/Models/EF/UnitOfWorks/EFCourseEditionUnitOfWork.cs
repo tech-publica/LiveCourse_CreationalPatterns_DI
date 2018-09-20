@@ -4,7 +4,7 @@ using CodeGym.Models.Core.UnitOfWorks;
 
 
 
-namespace CodeGym.Models.EF
+namespace CodeGym.Models.EF.UnitOfWorks
 {
     public class EFCourseEditionUnitOfWork : CourseEditionUnitOfWork
     {
@@ -27,6 +27,11 @@ namespace CodeGym.Models.EF
         public void Cancel(Course c)
         {
             ctx.Database.CurrentTransaction?.Rollback();
+        }
+
+        public void Save()
+        {
+            ctx.SaveChanges();
         }
 
         public void End()

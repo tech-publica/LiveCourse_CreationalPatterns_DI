@@ -12,6 +12,7 @@ namespace CodeGym.Models.Core.UnitOfWorks
         CourseRepository Courses{ get;}
         void Begin();
         void End();
+        void Save();
         void Cancel(Course c);
     }
 }
