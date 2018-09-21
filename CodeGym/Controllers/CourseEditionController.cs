@@ -17,13 +17,14 @@ namespace CodeGym.Controllers
     public class CourseEditionController : ControllerBase
     {
         private CourseEditionUnitOfWork editionWork;
+        public const string GET_COURSE_EDITION_ROUTE_NAME = "GetCourseEdition";
 
         public CourseEditionController(CourseEditionUnitOfWork editionWork)
         {
             this.editionWork = editionWork;
         }
 
-        [HttpGet("{id}", Name = "GetCourseEdition")]
+        [HttpGet("{id}", Name = GET_COURSE_EDITION_ROUTE_NAME)]
         public IActionResult GetCourseEdition(int id)
         {
             if (id < 1)
@@ -53,15 +54,14 @@ namespace CodeGym.Controllers
         }
 
 
-        [HttpPost("{courseId}/edition")]
-        public IActionResult CreateCourseEdition(int courseId,
-            [FromBody] CourseEditionViewModel editionViewModel)
+        [HttpPost()]
+        public IActionResult CreateCourseEdition([FromBody] CourseEditionViewModel editionViewModel)
         {
-            if(courseId < 0 || editionViewModel == null)
+            if (editionViewModel == null || editionViewModel.CourseId < 0)
             {
                 return BadRequest();
             }
-            if(editionViewModel.StartDate >= editionViewModel.EndDate)
+            if(editionViewModel.EndDate < editionViewModel.StartDate)
             {
                 ModelState.AddModelError("StartDate", "Start date must be prior to end date.");
 
@@ -71,14 +71,14 @@ namespace CodeGym.Controllers
                 return BadRequest(ModelState);
             }
             editionWork.Begin();
-            var course = editionWork.Courses.FindByID(courseId);
+            var course = editionWork.Courses.FindByID(editionViewModel.CourseId);
             if(course == null)
             {
                 return NotFound();
             }
             var edition = new CourseEdition()
             {
-                CourseId = courseId,
+                CourseId = editionViewModel.CourseId,
                 StartDate = editionViewModel.StartDate,
                 EndDate = editionViewModel.EndDate,
                 Cost = editionViewModel.Cost
