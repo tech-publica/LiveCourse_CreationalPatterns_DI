@@ -9,13 +9,13 @@ namespace CodeGym.Models.EF
 {
     public class CodeGymContext : DbContext
     {
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<CourseEdition> CourseEditions { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Enrollment> Enrollments { get; set; }
-       
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<CourseEdition> CourseEditions { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Enrollment> Enrollments { get; set; }
 
 
+        public CodeGymContext() { }
         public CodeGymContext(DbContextOptions<CodeGymContext> options) :base (options)
         {
             

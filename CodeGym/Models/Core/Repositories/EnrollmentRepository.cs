@@ -9,5 +9,6 @@ namespace CodeGym.Models.Core.Repositories
     {
         void EnrollInCourseEdition(CourseEdition edition, Student student);
         void RemoveFromCourseEdition(CourseEdition edition, Student student);
+        
     }
 }
