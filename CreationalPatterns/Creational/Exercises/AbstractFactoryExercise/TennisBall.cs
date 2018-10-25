@@ -4,11 +4,11 @@ using System.Text;
 
 namespace CreationalPatterns.Creational.Exercises.AbstractFactoryExercise
 {
-    public class PadelRacket : Racket
+    public class TennisBall : Ball
     {
-        public override void Hit()
+        public override void Bounce()
         {
-            Console.WriteLine("Soner or later I will manage to bounce one out of the court!");
+            Console.WriteLine("bounce really fast!");
         }
     }
 }

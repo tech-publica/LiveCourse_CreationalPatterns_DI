@@ -18,15 +18,16 @@ namespace TestCreationalPatterns.Creational.Exercises.AbstractFactoryExercises
         [Fact]
         public void CreateRacket()
         {
-
+            Racket racket = factory.CreateRacket();
+            Assert.IsType<PadelRacket>(racket);
         }
 
         // Test the creation of racket using a PadelRacketFactory and check it produces Padel Rackets
-
         [Fact]
         public void CreateBall()
         {
-
+            Ball ball = factory.CreateBall();
+            Assert.IsType<PadelBall>(ball);
         }
     }
 }

@@ -16,12 +16,15 @@ namespace CreationalPatterns.Creational.Exercises.AbstractFactoryExercise
         {
            switch(sport)
            {
-                case Sport.PADEL: return null;   // you will have to change this
-                default: return null;   // you will have to change this
+                case Sport.PADEL: return new PadelRacketFactory();   // you will have to change this
+                default: return new TennisRacketFactory();   // you will have to change this
             }
         }
 
 
         // here you will need to declare something...
+
+        public abstract Racket CreateRacket();
+        public abstract Ball CreateBall();
     }
 }
