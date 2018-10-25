@@ -1,4 +1,5 @@
 ﻿using CodeGym.Controllers;
+using System.Linq;
 using CodeGym.Models.Core.Repositories;
 using CodeGym.Models.Core.UnitOfWorks;
 using CodeGym.ViewModels;
@@ -8,6 +9,7 @@ using Xunit;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using CodeGym.Models.Core;
+using System.Collections.Generic;
 
 namespace TestCodeGym.Controllers
 {
@@ -46,11 +48,26 @@ namespace TestCodeGym.Controllers
             created.Value.Should().Be(courseEditionViewModel);
         }
 
-
         [Fact]
-        public void CreateCourseEdition_WithInvalidCourseId_ShouldResultInBadRequest()
+        public void GetCourseEditions()
         {
-            
+            var courseEditions = new CourseEdition[]
+            {
+                new CourseEdition { StartDate = DateTime.Today,  EndDate = VALID_END_DATE,  CourseId = VALID_COURSE_ID, Cost = COST},
+                new CourseEdition { StartDate = DateTime.Today,  EndDate = VALID_END_DATE,  CourseId = VALID_COURSE_ID, Cost = COST},
+            };
+            mockCourseEditionRepository.Setup(r => r.FindByCourseId(VALID_COURSE_ID)).Returns(courseEditions);
+            mockCourseRepository.Setup(r => r.FindByID(VALID_COURSE_ID)).Returns(new Course { Id = VALID_COURSE_ID });
+            var result = controller.GetCourseEditions(VALID_COURSE_ID);
+            result.Should().BeOfType<OkObjectResult>();
+            OkObjectResult okResult = result as OkObjectResult;
+            okResult.Value.Should().BeAssignableTo<IEnumerable<CourseEditionViewModel>>();
+            IEnumerable<CourseEditionViewModel> editions = okResult.Value as IEnumerable<CourseEditionViewModel>;
+            editions.Should().HaveCount(2);
+            editions.Select(e => e.StartDate).Should().Equal(courseEditions.Select(c => c.StartDate));
+            editions.Select(e => e.EndDate).Should().Equal(courseEditions.Select(c => c.EndDate));
         }
+
+
     }
 }

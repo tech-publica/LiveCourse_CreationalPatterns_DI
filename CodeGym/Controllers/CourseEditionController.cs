@@ -42,14 +42,14 @@ namespace CodeGym.Controllers
             {
                 return BadRequest();
             }
-            var editions = editionWork.CourseEditions.FindByCourseId(courseId).Select(c => c.ToViewModel());
+            var editions = editionWork.CourseEditions.FindByCourseId(courseId).Select(c => c.ToViewModel()).ToList();
             return Ok(editions);
         }
 
         [HttpGet]
         public IActionResult GetCourseEditions()
         {
-            var editions = editionWork.CourseEditions.FindAll().Select(c => c.ToViewModel()); ;
+            var editions = editionWork.CourseEditions.FindAll().Select(c => c.ToViewModel()).ToList(); 
             return Ok(editions);
         }
 
