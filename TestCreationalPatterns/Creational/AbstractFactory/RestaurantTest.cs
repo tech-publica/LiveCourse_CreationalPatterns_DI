@@ -8,7 +8,7 @@ using Xunit;
 namespace TestCreationalPatterns.Creational.AbstractFactory
 {
 
-    public class RestaurantTest
+    public class RacketFactoryTest
     {
         [Fact]
         public void CookPizza()
