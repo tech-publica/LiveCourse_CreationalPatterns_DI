@@ -1,1 +1,5 @@
-﻿https://speakerdeck.com/tech_publica/object-oriented-design-object-creation-classical-patterns-and-dependency-injection
+﻿Course slides on Speaker Deck
+https://speakerdeck.com/tech_publica/object-oriented-design-object-creation-classical-patterns-and-dependency-injection
+
+My youtube channel, useful for seeing more material on Design Patterns, and/or learn or refresh the fundamentals of Object Oriented Programming (in Java)
+https://www.youtube.com/channel/UCg8PZ_yC_CMc15sBFAd9boA
