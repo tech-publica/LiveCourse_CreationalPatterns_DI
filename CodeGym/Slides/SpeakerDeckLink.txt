@@ -1,0 +1,1 @@
+﻿https://speakerdeck.com/tech_publica/object-oriented-design-object-creation-classical-patterns-and-dependency-injection
